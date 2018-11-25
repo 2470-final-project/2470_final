@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="scrollbar-inner">
+
+            <div hidden="hidden" th:name=${nav} id="nav"></div>
+            <div hidden="hidden" th:name=${subnav} id="subnav"></div>
+            <ul class="navigation">
+                <!-- Menu Home-->
+                <li id="home">
+                    <a href="/">
+                        <i class="zmdi zmdi-home"></i>
+                        Home
+                    </a>
+                </li>
+                <!-- Menu Data-->
+                <li id="user" sec:authorize="hasRole('ADMIN')">
+                    <a href="/user/management">
+                        <i class="zmdi zmdi-accounts"></i>
+                        User Management
+                    </a>
+                </li>
+                <!-- Menu Filter out patients -->
+                <li class="navigation__sub" id="queries">
+                    <a href="">
+                        <i class="zmdi zmdi-view-list"></i>
+                        Filtering
+                    </a>
+                    <ul>
+                        <li id="exceed">
+                            <a href="/query/exceed">Exceed Threshold</a>
+                        </li>
+                        <li id="differ">
+                            <a href="/query/differ">Spatial Variance</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Menu Export-->
+                <li class="navigation__sub" id="analysis">
+                    <a href="">
+                        <i class="zmdi zmdi-spinner"></i>
+                        Summarization
+                    </a>
+                    <ul>
+                        <li id="builder">
+                            <a href="/analysis/builder">Query Builder</a>
+                        </li>
+                        <li id="job">
+                            <a href="/analysis/job">Export Jobs</a>
+                        </li>
+                        <!-- <li id="export">
+                            <a href="/analysis/export">Export</a>
+                        </li> -->
+                    </ul>
+                </li>
+                <!-- Menu Export-->
+                <li id="manual">
+                    <a href="/manual">
+                        <i class="zmdi zmdi-format-clear-all"></i>
+                        Manual
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+</body>
+</html>
