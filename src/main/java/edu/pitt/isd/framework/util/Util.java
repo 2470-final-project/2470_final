@@ -8,8 +8,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class Util {
 
@@ -57,7 +59,7 @@ public class Util {
         File folder = new File(dir);
         if (folder.isFile()) {
             if (dir.toLowerCase().endsWith("." + type))
-                return new String[]{dir};
+                return new String[] { dir };
             else
                 return new String[0];
         }
@@ -123,6 +125,14 @@ public class Util {
         StringWriter sw = new StringWriter();
         e.printStackTrace(new PrintWriter(sw));
         return sw.toString();
+    }
+
+    public static int[] randomIntArray(int start, int end, boolean sorted) {
+        int[] array = new Random().ints(1, 18).distinct().limit(6).toArray();
+        if (sorted) {
+            Arrays.sort(array);
+        }
+        return array;
     }
 
 }

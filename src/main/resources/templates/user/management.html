@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Brain Flux</title>
+<title>Lecture Classroom Evaluation System</title>
 <!-- Vendor styles -->
 <link rel="stylesheet" href="/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="/vendors/bower_components/animate.css/animate.min.css">
@@ -18,6 +18,11 @@
 
 <!-- App styles -->
 <link rel="stylesheet" href="/css/app.min.css">
+<style>
+.btn-demo>.btn, .btn-demo>.btn-group {
+	margin: 0 5px 0 0;
+}
+</style>
 
 </head>
 
@@ -28,42 +33,188 @@
     <div th:insert="fragments/sidebar :: aside"></div>
 
     <section class="content">
-        <div class="content__inner">
-            <!-- PUT THE MAIN CONTENT HERE -->
-            <header class="content__title">
-                <h1>Data Summarization Query Builder</h1>
-                <small>Build analytical queries from scratch or using an existing query as template.</small>
-            </header>
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">
-                        Choose a query template to edit or
-                        <a href="/analysis/create">CREATE A NEW QUERY</a>
-                    </h3>
-                    <div class="table-responsive">
-                        <table id="queryTable" class="table table-bordered">
-                            <thead class="thead-default">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Alias</th>
-                                    <th>Downsample Interval</th>
-                                    <th>Starting Time</th>
-                                    <th>Duration</th>
-                                    <th>Create Time</th>
-                                    <th>Update Time</th>
-                                    <th>Execution Time</th>
-                                </tr>
-                            </thead>
-                            <tbody style="cursor: pointer">
-                                <tr>
-                                </tr>
-                            </tbody>
-                        </table>
+        <!-- PUT THE MAIN CONTENT HERE -->
+        <header class="content__title">
+            <h1>User Management</h1>
+        </header>
+        <div class="card">
+            <div class="card-body">
+                <div class="btn-demo">
+                    <button>Create User</button>
+                </div>
+                <div class="table-responsive">
+                    <table id="queryTable" class="table table-bordered">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>School</th>
+                                <th>Enabled</th>
+                                <th>Created</th>
+                                <th>Update</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Edit Modal -->
+        <div class="modal fade" id="edit-user-modal" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title pull-left">Edit User</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" id="user-form">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" placeholder="e.g: admin">
+                                <i class="form-group__bar"></i>
+                            </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" placeholder="e.g: David Smith">
+                                <i class="form-group__bar"></i>
+                            </div>
+                            <div class="form-group">
+                                <label>Role</label>
+                                <div class="radio">
+                                    <input type="radio" name="form-horizontal-radio" id="form-horizontal-radio-1">
+                                    <label class="radio__label" for="form-horizontal-radio-1">System Administrator</label>
+                                </div>
+
+                                <div class="radio">
+                                    <input type="radio" name="form-horizontal-radio" id="form-horizontal-radio-2">
+                                    <label class="radio__label" for="form-horizontal-radio-2">Instructor</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>School</label>
+                                <select class="custom-select" data-placeholder="Select Measurement" id="measure">
+                                    <option th:value="${measure}" th:each="measure : ${measures}" th:text="${measure}"></option>
+                                </select>
+                            </div>
+                            <div class="col-sm-7 col-md-7">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label>Choose Electrodes</label>
+                                            <select class="custom-select" data-placeholder="Select Electrodes" id="predefined" size="3">
+                                                <option value="" disabled>Predefined Sets</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <select class="custom-select" data-placeholder="Select Electrodes" id="electrode" multiple size="10">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5 col-md-5">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label>Candidate</label>
+                                            <select class="custom-select" data-placeholder="Select Columns" id="column" multiple size="15">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-2">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <label>&nbsp</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <button type="button" class="btn btn-success col-sm-12 col-md-12" style="margin-bottom: 10px" id="addButton">
+                                            <i class="zmdi zmdi-arrow-right"></i>
+                                        </button>
+                                        <p>
+                                            <i>To eliminate possible human errors, the add button above now always clears the final list and renew the list with your current
+                                                selection.</i>
+                                        </p>
+                                        <!-- <button type="button" class="btn btn-danger col-sm-12 col-md-12" id="clearButton">
+                                                    <i class="zmdi zmdi-close"></i>
+                                                </button> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5 col-md-5">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <label>Final List</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <select class="custom-select" data-placeholder="Select Category" id="columnsInGroup" multiple size="15">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal fade" id="modal-empty" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title pull-left">Empty Column Group</h5>
+                                </div>
+                                <div class="modal-body">Please add at least one column to the final aggregation group list.</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-link" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-primary" autocomplete="off" id="addGroupButton" value="Update">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="toggle-disable-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title pull-left">Disable User</h5>
+                    </div>
+                    <div class="modal-body">Confirm disable user?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="disable-user-button">Disable</button>
                     </div>
                 </div>
             </div>
-            <div th:insert="fragments/footer :: footer"></div>
         </div>
+
+        <div class="modal fade" id="toggle-enable-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title pull-left">Enable User</h5>
+                    </div>
+                    <div class="modal-body">Confirm enable user?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="enable-user-button">Enable</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:insert="fragments/footer :: footer"></div>
     </section>
     </main>
 
@@ -71,7 +222,6 @@
     <!-- Javascript -->
     <!-- Vendors -->
     <script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/vendors/bower_components/tether/dist/js/tether.min.js"></script>
     <script src="/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
     <script src="/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>

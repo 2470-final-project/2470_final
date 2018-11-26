@@ -30,10 +30,10 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="users" schema="evaluation">
+        <table tableName="question" schema="evaluation">
             <generatedKey identity="true" column="id" sqlStatement="SELECT LAST_INSERT_ID()" />
         </table>
-        <table tableName="authorities">
+        <table tableName="question_option">
             <generatedKey identity="true" column="id" sqlStatement="SELECT LAST_INSERT_ID()" />
         </table>
     </context>
