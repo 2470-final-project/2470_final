@@ -14,21 +14,21 @@ import edu.pitt.isd.framework.util.Util;
 import edu.pitt.isd.service.QuestionService;
 
 @RestController
-@RequestMapping("/evaluation")
+@RequestMapping("evaluation")
 public class QuestionController {
     @Autowired
     QuestionService questionService;
 
     private List<QuestionVO> list = new ArrayList<>();
 
-    @RequestMapping("/list")
+    @RequestMapping("list")
     public RestfulResponse questionList() {
         List<QuestionVO> list = questionService.questionVOList();
         RestfulResponse response = new RestfulResponse(1, "success", list);
         return response;
     }
 
-    @RequestMapping("/question")
+    @RequestMapping("question")
     public ModelAndView questionList(ModelAndView modelAndView) {
         if (list.size() == 0) {
             list = questionService.questionVOList();
@@ -41,7 +41,7 @@ public class QuestionController {
         }
 
         modelAndView.addObject("questions", questions);
-        modelAndView.setViewName("/question/questions");
+        modelAndView.setViewName("question/questions");
         return modelAndView;
     }
 
