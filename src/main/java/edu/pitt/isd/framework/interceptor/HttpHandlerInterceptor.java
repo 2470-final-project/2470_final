@@ -21,8 +21,10 @@ public class HttpHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
-        String log = String.format("HTTP request: %s %s", request.getMethod(), request.getServletPath());
-        logger.debug(log);
+        if (!request.getServletPath().matches("^/(vendors|css|fonts|demo|js)/.*$")) {
+            String log = String.format("HTTP request: %s %s", request.getMethod(), request.getServletPath());
+            logger.debug(log);
+        }
         return true;
     }
 
