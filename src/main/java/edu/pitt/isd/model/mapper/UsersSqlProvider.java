@@ -42,6 +42,12 @@ public class UsersSqlProvider {
         if (record.getUsername() != null) {
             sql.VALUES("username", "#{username,jdbcType=VARCHAR}");
         }
+        if (record.getFirstname() != null) {
+            sql.VALUES("firstname", "#{firstname,jdbcType=VARCHAR}");
+        }
+        if (record.getLastname() != null) {
+            sql.VALUES("lastname", "#{lastname,jdbcType=VARCHAR}");
+        }
         if (record.getPassword() != null) {
             sql.VALUES("password", "#{password,jdbcType=VARCHAR}");
         }
@@ -69,6 +75,8 @@ public class UsersSqlProvider {
             sql.SELECT("id");
         }
         sql.SELECT("username");
+        sql.SELECT("firstname");
+        sql.SELECT("lastname");
         sql.SELECT("password");
         sql.SELECT("enabled");
         sql.SELECT("create_time");
@@ -96,6 +104,12 @@ public class UsersSqlProvider {
         if (record.getUsername() != null) {
             sql.SET("username = #{record.username,jdbcType=VARCHAR}");
         }
+        if (record.getFirstname() != null) {
+            sql.SET("firstname = #{record.firstname,jdbcType=VARCHAR}");
+        }
+        if (record.getLastname() != null) {
+            sql.SET("lastname = #{record.lastname,jdbcType=VARCHAR}");
+        }
         if (record.getPassword() != null) {
             sql.SET("password = #{record.password,jdbcType=VARCHAR}");
         }
@@ -121,6 +135,8 @@ public class UsersSqlProvider {
         sql.UPDATE("users");
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("username = #{record.username,jdbcType=VARCHAR}");
+        sql.SET("firstname = #{record.firstname,jdbcType=VARCHAR}");
+        sql.SET("lastname = #{record.lastname,jdbcType=VARCHAR}");
         sql.SET("password = #{record.password,jdbcType=VARCHAR}");
         sql.SET("enabled = #{record.enabled,jdbcType=BIT}");
         sql.SET("create_time = #{record.createTime,jdbcType=TIMESTAMP}");
@@ -139,6 +155,12 @@ public class UsersSqlProvider {
         sql.UPDATE("users");
         if (record.getUsername() != null) {
             sql.SET("username = #{username,jdbcType=VARCHAR}");
+        }
+        if (record.getFirstname() != null) {
+            sql.SET("firstname = #{firstname,jdbcType=VARCHAR}");
+        }
+        if (record.getLastname() != null) {
+            sql.SET("lastname = #{lastname,jdbcType=VARCHAR}");
         }
         if (record.getPassword() != null) {
             sql.SET("password = #{password,jdbcType=VARCHAR}");

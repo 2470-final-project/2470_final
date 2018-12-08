@@ -293,6 +293,146 @@ public class UsersExample {
             return (Criteria) this;
         }
 
+        public Criteria andFirstnameIsNull() {
+            addCriterion("firstname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameIsNotNull() {
+            addCriterion("firstname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameEqualTo(String value) {
+            addCriterion("firstname =", value, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameNotEqualTo(String value) {
+            addCriterion("firstname <>", value, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameGreaterThan(String value) {
+            addCriterion("firstname >", value, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameGreaterThanOrEqualTo(String value) {
+            addCriterion("firstname >=", value, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameLessThan(String value) {
+            addCriterion("firstname <", value, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameLessThanOrEqualTo(String value) {
+            addCriterion("firstname <=", value, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameLike(String value) {
+            addCriterion("firstname like", value, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameNotLike(String value) {
+            addCriterion("firstname not like", value, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameIn(List<String> values) {
+            addCriterion("firstname in", values, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameNotIn(List<String> values) {
+            addCriterion("firstname not in", values, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameBetween(String value1, String value2) {
+            addCriterion("firstname between", value1, value2, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameNotBetween(String value1, String value2) {
+            addCriterion("firstname not between", value1, value2, "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameIsNull() {
+            addCriterion("lastname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameIsNotNull() {
+            addCriterion("lastname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameEqualTo(String value) {
+            addCriterion("lastname =", value, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameNotEqualTo(String value) {
+            addCriterion("lastname <>", value, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameGreaterThan(String value) {
+            addCriterion("lastname >", value, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameGreaterThanOrEqualTo(String value) {
+            addCriterion("lastname >=", value, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameLessThan(String value) {
+            addCriterion("lastname <", value, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameLessThanOrEqualTo(String value) {
+            addCriterion("lastname <=", value, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameLike(String value) {
+            addCriterion("lastname like", value, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameNotLike(String value) {
+            addCriterion("lastname not like", value, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameIn(List<String> values) {
+            addCriterion("lastname in", values, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameNotIn(List<String> values) {
+            addCriterion("lastname not in", values, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameBetween(String value1, String value2) {
+            addCriterion("lastname between", value1, value2, "lastname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameNotBetween(String value1, String value2) {
+            addCriterion("lastname not between", value1, value2, "lastname");
+            return (Criteria) this;
+        }
+
         public Criteria andPasswordIsNull() {
             addCriterion("password is null");
             return (Criteria) this;
@@ -545,6 +685,16 @@ public class UsersExample {
 
         public Criteria andUsernameLikeInsensitive(String value) {
             addCriterion("upper(username) like", value.toUpperCase(), "username");
+            return (Criteria) this;
+        }
+
+        public Criteria andFirstnameLikeInsensitive(String value) {
+            addCriterion("upper(firstname) like", value.toUpperCase(), "firstname");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastnameLikeInsensitive(String value) {
+            addCriterion("upper(lastname) like", value.toUpperCase(), "lastname");
             return (Criteria) this;
         }
 

@@ -40,16 +40,19 @@
         <div class="card">
             <div class="card-body">
                 <div class="btn-demo">
-                    <button>Create User</button>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#create-user-modal">
+                        <i class="zmdi zmdi-account-add"></i>
+                        Create User
+                    </button>
                 </div>
                 <div class="table-responsive">
                     <table id="queryTable" class="table table-bordered">
                         <thead class="thead-default">
                             <tr>
                                 <th>ID</th>
+                                <th>Name</th>
                                 <th>Username</th>
                                 <th>Role</th>
-                                <th>School</th>
                                 <th>Enabled</th>
                                 <th>Created</th>
                                 <th>Update</th>
@@ -66,124 +69,122 @@
         </div>
 
         <!-- User Edit Modal -->
+        <div class="modal fade" id="create-user-modal" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title pull-left">Create User</h5>
+                    </div>
+                    <form role="form" id="create-user-form">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" placeholder="e.g: dsmith" id="c_username" required>
+                                <i class="form-group__bar"></i>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" placeholder="e.g: David" id="c_firstname" required>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" placeholder="e.g: Smith" id="c_lastname" required>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Role</label>
+                                <div class="radio">
+                                    <input type="radio" name="c_role" id="c_role-1" value="ROLE_ADMIN" required>
+                                    <label class="radio__label" for="c_role-1">System Administrator</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="c_role" id="c_role-2" value="ROLE_USER">
+                                    <label class="radio__label" for="c_role-2">Instructor</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-info" autocomplete="off" id="create-button" value="Create">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="modal fade" id="edit-user-modal" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title pull-left">Edit User</h5>
                     </div>
-                    <div class="modal-body">
-                        <form role="form" id="user-form">
+                    <form role="form" id="edit-user-form">
+                        <div class="modal-body">
                             <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" placeholder="e.g: admin">
-                                <i class="form-group__bar"></i>
+                                <input type="text" class="form-control" id="e_id" hidden>
                             </div>
                             <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="e.g: David Smith">
+                                <label>Username - Not allowed for change once created</label>
+                                <input type="text" class="form-control" placeholder="e.g: dsmith" id="e_username" required disabled>
                                 <i class="form-group__bar"></i>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" placeholder="e.g: David" id="e_firstname" required>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" placeholder="e.g: Smith" id="e_lastname" required>
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Role</label>
                                 <div class="radio">
-                                    <input type="radio" name="form-horizontal-radio" id="form-horizontal-radio-1">
-                                    <label class="radio__label" for="form-horizontal-radio-1">System Administrator</label>
+                                    <input type="radio" name="e_role" id="e_role-1" value="ROLE_ADMIN" required>
+                                    <label class="radio__label" for="e_role-1">System Administrator</label>
                                 </div>
-
                                 <div class="radio">
-                                    <input type="radio" name="form-horizontal-radio" id="form-horizontal-radio-2">
-                                    <label class="radio__label" for="form-horizontal-radio-2">Instructor</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>School</label>
-                                <select class="custom-select" data-placeholder="Select Measurement" id="measure">
-                                    <option th:value="${measure}" th:each="measure : ${measures}" th:text="${measure}"></option>
-                                </select>
-                            </div>
-                            <div class="col-sm-7 col-md-7">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label>Choose Electrodes</label>
-                                            <select class="custom-select" data-placeholder="Select Electrodes" id="predefined" size="3">
-                                                <option value="" disabled>Predefined Sets</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <select class="custom-select" data-placeholder="Select Electrodes" id="electrode" multiple size="10">
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-5 col-md-5">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label>Candidate</label>
-                                            <select class="custom-select" data-placeholder="Select Columns" id="column" multiple size="15">
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-2 col-md-2">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <label>&nbsp</label>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12">
-                                        <button type="button" class="btn btn-success col-sm-12 col-md-12" style="margin-bottom: 10px" id="addButton">
-                                            <i class="zmdi zmdi-arrow-right"></i>
-                                        </button>
-                                        <p>
-                                            <i>To eliminate possible human errors, the add button above now always clears the final list and renew the list with your current
-                                                selection.</i>
-                                        </p>
-                                        <!-- <button type="button" class="btn btn-danger col-sm-12 col-md-12" id="clearButton">
-                                                    <i class="zmdi zmdi-close"></i>
-                                                </button> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-5 col-md-5">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <label>Final List</label>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12">
-                                        <select class="custom-select" data-placeholder="Select Category" id="columnsInGroup" multiple size="15">
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal fade" id="modal-empty" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title pull-left">Empty Column Group</h5>
-                                </div>
-                                <div class="modal-body">Please add at least one column to the final aggregation group list.</div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-link" data-dismiss="modal">OK</button>
+                                    <input type="radio" name="e_role" id="e_role-2" value="ROLE_USER">
+                                    <label class="radio__label" for="e_role-2">Instructor</label>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
-                        <input type="submit" class="btn btn-primary" autocomplete="off" id="addGroupButton" value="Update">
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-info" autocomplete="off" id="edit-button" value="Update">
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-
+        <div class="modal fade" id="reset-password-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title pull-left">Rest Password for User</h5>
+                    </div>
+                    <div class="modal-body">Confirm reset password?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="reset-password-button">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="modal fade" id="toggle-disable-modal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -248,6 +249,6 @@
     <!-- App functions and actions -->
     <script src="/js/navigation.js"></script>
     <script src="/js/app.min.js"></script>
-    <script src="/js/analysis/builder.js"></script>
+    <script src="/js/user/management.js"></script>
 </body>
 </html>

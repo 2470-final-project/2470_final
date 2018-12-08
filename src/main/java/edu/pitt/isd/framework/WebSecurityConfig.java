@@ -15,10 +15,10 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/css/**", "/vendors/**", "/js/**", "/demo/**", "/fonts/**", "/img/**", "/scss/**")
-                .permitAll().antMatchers("/take/**").hasAuthority("USER").anyRequest().authenticated().anyRequest()
-                .fullyAuthenticated().and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll().and()
-                .logout().permitAll();
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/css/**", "/vendors/**", "/js/**", "/demo/**", "/fonts/**", "/img/**", "/scss/**").permitAll()
+                .antMatchers("/take/**").hasAuthority("USER").anyRequest().authenticated().anyRequest().fullyAuthenticated()
+                .and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll();
     }
 
     @Bean

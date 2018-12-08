@@ -16,4 +16,24 @@ public class UsersService {
     public List<UserVO> selectAll() {
         return usersDao.selectAll();
     }
+
+    public int insertUser(UserVO userVO) {
+        return usersDao.insertUser(userVO);
+    }
+
+    public int updateUser(UserVO userVO) {
+        return usersDao.updateUser(userVO);
+    }
+
+    public UserVO selectById(Integer userId) {
+        return usersDao.selectById(userId);
+    }
+
+    public int resetPassword(Integer id) {
+        return usersDao.resetPassword(id);
+    }
+
+    public int toggleEnabled(Integer id, Boolean enable) {
+        return usersDao.toggleEnabled(id, enable);
+    }
 }
