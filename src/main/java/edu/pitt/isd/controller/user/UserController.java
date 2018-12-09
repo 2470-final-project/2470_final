@@ -29,7 +29,7 @@ public class UserController {
     public ModelAndView userManagement(ModelAndView modelAndView) {
         modelAndView.addObject("nav", "user");
         modelAndView.addObject("subnav", "");
-        modelAndView.setViewName("user/management");
+        modelAndView.setViewName("admin/management");
         return modelAndView;
     }
 

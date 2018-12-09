@@ -12,6 +12,7 @@ import edu.pitt.isd.controller.user.vo.UserVO;
 import edu.pitt.isd.model.dto.Authorities;
 import edu.pitt.isd.model.dto.AuthoritiesExample;
 import edu.pitt.isd.model.dto.Users;
+import edu.pitt.isd.model.dto.UsersExample;
 import edu.pitt.isd.model.mapper.AuthoritiesMapper;
 import edu.pitt.isd.model.mapper.UsersMapper;
 
@@ -20,7 +21,7 @@ public class UsersDao {
 
     @Value("${default-password}")
     private String defaultPassword;
-    
+
     @Autowired
     UsersMapper usersMapper;
 
@@ -90,6 +91,10 @@ public class UsersDao {
         users.setId(id);
         users.setEnabled(enable);
         return usersMapper.updateByPrimaryKeySelective(users);
+    }
+
+    public UserVO selectByUsername(String name) {
+        return usersMapper.selectByUsername(name);
     }
 
 }

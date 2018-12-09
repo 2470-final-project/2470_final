@@ -175,4 +175,19 @@ public interface UsersMapper {
             @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
             @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP) })
     UserVO selectUserVOByPrimaryKey(int userId);
+
+    
+
+    @Select({ "SELECT u.id, u.username, u.password, u.firstname, u.lastname, u.enabled, u.create_time, u.update_time, a.authority AS role",
+            "FROM users u LEFT JOIN authorities a ON u.id = a.id WHERE u.username = #{name,jdbcType=VARCHAR}" })
+    @Results({ @Result(column = "id", property = "id", jdbcType = JdbcType.INTEGER, id = true),
+            @Result(column = "username", property = "username", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "password", property = "password", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "firstname", property = "firstname", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "lastname", property = "lastname", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "role", property = "role", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "enabled", property = "enabled", jdbcType = JdbcType.BIT),
+            @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+            @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP) })
+    UserVO selectByUsername(String name);
 }

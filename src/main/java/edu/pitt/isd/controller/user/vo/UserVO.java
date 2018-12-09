@@ -11,6 +11,7 @@ public class UserVO {
     private Boolean enabled;
     private Date createTime;
     private Date updateTime;
+    private String password;
 
     public Integer getId() {
         return id;
@@ -74,6 +75,14 @@ public class UserVO {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

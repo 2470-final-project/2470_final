@@ -24,15 +24,15 @@
             <li class="dropdown">
                 <a href="" data-toggle="dropdown" class="btn--icon-text">
                     <i class="zmdi zmdi-account-circle"></i>
-                    <!-- Hello,
-                    <span sec:authentication="name"></span> -->
+                    Hello,
+                    <span sec:authentication="principal.firstname"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu--block">
                     <div class="listview listview--hover">
                         <div class="listview__header" style="text-transform: none">
                             <img class="user__img" src="/demo/img/profile-pics/4.jpg" alt="" style="margin: 0">
                             <div>
-                                <div class="user__name" th:text="${#authentication.name}">username</div>
+                                <div class="user__name" th:text="${#authentication.principal.firstname} + ' ' + ${#authentication.principal.lastname} + ' (' + ${#authentication.name} + ')'">username</div>
                                 <div class="user__email">
                                     <div sec:authorize="hasRole('USER')">Instructor</div>
                                     <div sec:authorize="hasRole('ADMIN')">System Administrator</div>
