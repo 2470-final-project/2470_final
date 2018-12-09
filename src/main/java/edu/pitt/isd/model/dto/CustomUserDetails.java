@@ -2,11 +2,12 @@ package edu.pitt.isd.model.dto;
 
 import java.util.Collection;
 
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class CustomUserDetails implements UserDetails {
+public class CustomUserDetails implements UserDetails, CredentialsContainer {
     private static final long serialVersionUID = -7885322369923672628L;
 
     private User user;
@@ -92,5 +93,12 @@ public class CustomUserDetails implements UserDetails {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    @Override
+    public void eraseCredentials() {
+        this.user.eraseCredentials();
+        
+        
     }
 }
