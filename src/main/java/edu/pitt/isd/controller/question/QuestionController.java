@@ -23,13 +23,15 @@ public class QuestionController {
 
     @RequestMapping("list")
     public RestfulResponse questionList() {
-        List<QuestionVO> list = questionService.questionVOList();
+        if (list.size() == 0) {
+            list = questionService.questionVOList();
+        }
         RestfulResponse response = new RestfulResponse(1, "success", list);
         return response;
     }
 
-    @RequestMapping("question")
-    public ModelAndView questionList(ModelAndView modelAndView) {
+    @RequestMapping(value = { "question-form/{url}" })
+    public ModelAndView questionForm(ModelAndView modelAndView) {
         if (list.size() == 0) {
             list = questionService.questionVOList();
         }
@@ -41,6 +43,17 @@ public class QuestionController {
         }
 
         modelAndView.addObject("questions", questions);
+        modelAndView.setViewName("question/question-form");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = { "question" })
+    public ModelAndView questionList(ModelAndView modelAndView) {
+        if (list.size() == 0) {
+            list = questionService.questionVOList();
+        }
+
+        modelAndView.addObject("questions", list);
         modelAndView.setViewName("question/questions");
         return modelAndView;
     }

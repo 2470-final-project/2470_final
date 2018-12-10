@@ -13,7 +13,11 @@ public class EvaluationService {
     @Autowired
     EvaluationDao evaluationDao;
 
-    public List<Evaluation> selectByUserId(String id) {
+    public List<Evaluation> selectByUserId(Integer id) {
         return evaluationDao.selectByUserId(id);
+    }
+
+    public int insert(Evaluation evaluation) {
+        return evaluationDao.insert(evaluation);
     }
 }

@@ -24,7 +24,7 @@
 
 <style>
 .radio, .checkbox {
-	margin: 0 1.3em;
+	margin: 0 1em;
 }
 
 .lead {
@@ -32,16 +32,18 @@
 }
 </style>
 
-
 </head>
 
 <body data-ma-theme="indigo">
-    <main class="main">
-    <div th:insert="fragments/page-loader :: div"></div>
-    <div th:insert="fragments/header :: header"></div>
-    <div th:insert="fragments/sidebar :: aside"></div>
+    <main class="main"> <header class="header">
+        <div class="header__logo">
+            <h1>
+                <a href="/">Lecture Classroom Evaluation System</a>
+            </h1>
+        </div>
+    </header>
 
-    <section class="content">
+    <section class="content content--full">
         <div class="content__inner">
             <!-- PUT THE MAIN CONTENT HERE -->
             <div class="card">
@@ -72,7 +74,6 @@
                     </form>
                 </div>
             </div>
-        </div>
         </div>
         <!-- /MAIN CONTENT -->
         <div th:insert="fragments/footer :: footer"></div>
