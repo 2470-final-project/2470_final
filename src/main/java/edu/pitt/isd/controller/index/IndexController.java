@@ -1,4 +1,4 @@
-package edu.pitt.isd.controller;
+package edu.pitt.isd.controller.index;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

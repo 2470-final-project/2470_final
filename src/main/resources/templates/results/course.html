@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Lecture Classroom Evaluation System</title>
+<!-- Vendor styles -->
+<link rel="stylesheet" href="/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" href="/vendors/bower_components/animate.css/animate.min.css">
+<link rel="stylesheet" href="/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
+<link rel="icon" type="image/ico" href="/img/favicon.ico">
+
+<!-- App styles -->
+<link rel="stylesheet" href="/css/app.min.css">
+<style>
+img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+img-block {
+	height: 300px;
+	border: solid;
+}
+</style>
+
+</head>
+
+<body data-ma-theme="indigo">
+    <main class="main">
+    <div th:insert="fragments/page-loader :: div"></div>
+    <div th:insert="fragments/header :: header"></div>
+    <div th:insert="fragments/sidebar :: aside"></div>
+
+    <section class="content">
+        <!-- PUT THE MAIN CONTENT HERE -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Bar Chart</h4>
+
+                    <div class="flot-chart flot-bar"></div>
+                    <div class="flot-chart-legends flot-chart-legends--bar"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Dynamic Data Chart</h4>
+
+                    <div class="flot-chart flot-dynamic"></div>
+                    <div class="flot-chart-legends flot-chart-legends--dynamic"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Donut Chart</h4>
+
+                    <div class="flot-chart flot-donut"></div>
+                    <div class="flot-chart-legends flot-chart-legend--donut"></div>
+                </div>
+            </div>
+        </div>
+        <div th:insert="fragments/footer :: footer"></div>
+    </section>
+    </main>
+
+    <div th:insert="fragments/ie-warning :: div"></div>
+    <!-- Javascript -->
+    <!-- Vendors -->
+    <script src="/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+
+    <!-- Vendors: Flot Charts -->
+    <script src="/vendors/bower_components/flot/jquery.flot.js"></script>
+    <script src="/vendors/bower_components/flot/jquery.flot.time.js"></script>
+    <script src="/vendors/bower_components/flot/jquery.flot.selection.js"></script>
+    <script src="/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="/vendors/bower_components/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+
+    <!-- App functions and actions -->
+    <script src="/js/results/course.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/app.min.js"></script>
+</body>
+</html>

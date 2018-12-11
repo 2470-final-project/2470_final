@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.pitt.isd.controller.question.vo.EvaluationVO;
 import edu.pitt.isd.framework.rest.RestfulResponse;
 import edu.pitt.isd.model.dto.Course;
 import edu.pitt.isd.model.dto.CustomUserDetails;
@@ -31,9 +32,11 @@ public class EvaluationController {
     public ModelAndView userEvaluationList(ModelAndView modelAndView) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails users = (CustomUserDetails) authentication.getPrincipal();
-        List<Evaluation> list = evaluationService.selectByUserId(users.getId());
+        List<EvaluationVO> list = evaluationService.selectVoByUserId(users.getId());
         
         modelAndView.addObject("evaluations", list);
+        modelAndView.addObject("nav", "my");
+        modelAndView.addObject("subnav", "");
         modelAndView.setViewName("evaluation/my");
         
         return modelAndView;

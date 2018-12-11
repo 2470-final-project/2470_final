@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import edu.pitt.isd.controller.question.vo.EvaluationVO;
 import edu.pitt.isd.model.dto.Course;
 import edu.pitt.isd.model.dto.CourseExample;
 import edu.pitt.isd.model.mapper.CourseMapper;
@@ -18,6 +19,10 @@ public class CourseDao {
         CourseExample example = new CourseExample();
         example.createCriteria().andInstructorIdEqualTo(id);
         return courseMapper.selectByExample(example);
+    }
+
+    public EvaluationVO selectByUrl(String url) {
+        return courseMapper.selectByUrl(url);
     }
 
 }

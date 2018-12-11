@@ -12,7 +12,6 @@ import edu.pitt.isd.controller.user.vo.UserVO;
 import edu.pitt.isd.model.dto.Authorities;
 import edu.pitt.isd.model.dto.AuthoritiesExample;
 import edu.pitt.isd.model.dto.Users;
-import edu.pitt.isd.model.dto.UsersExample;
 import edu.pitt.isd.model.mapper.AuthoritiesMapper;
 import edu.pitt.isd.model.mapper.UsersMapper;
 
@@ -93,7 +92,7 @@ public class UsersDao {
         return usersMapper.updateByPrimaryKeySelective(users);
     }
 
-    public UserVO selectByUsername(String name) {
+    public List<UserVO> selectByUsername(String name) {
         return usersMapper.selectByUsername(name);
     }
 

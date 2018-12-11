@@ -28,10 +28,12 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public CustomUserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 
-        UserVO user = userDao.selectByUsername(username);
-        List<GrantedAuthority> authorities = buildUserAuthority(user.getRole());
+        List<UserVO> user = userDao.selectByUsername(username);
+        List<GrantedAuthority> authorities = buildUserAuthority(user);
 
-        return buildUserForAuthentication(user, authorities);
+        UserVO vo = user.get(0);
+
+        return buildUserForAuthentication(vo, authorities);
 
     }
 
@@ -44,12 +46,11 @@ public class CustomUserDetailService implements UserDetailsService {
         return customUserDetails;
     }
 
-    private List<GrantedAuthority> buildUserAuthority(String userRoles) {
-
+    private List<GrantedAuthority> buildUserAuthority(List<UserVO> user) {
         Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
-
-        setAuths.add(new SimpleGrantedAuthority(userRoles));
-
+        for (UserVO vo : user) {
+            setAuths.add(new SimpleGrantedAuthority(vo.getRole()));
+        }
         List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
 
         return Result;

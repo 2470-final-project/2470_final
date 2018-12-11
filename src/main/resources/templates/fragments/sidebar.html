@@ -16,50 +16,42 @@
                         Home
                     </a>
                 </li>
-                <!-- Menu Data-->
                 <li id="user" sec:authorize="hasRole('ADMIN')">
                     <a href="/user/management">
                         <i class="zmdi zmdi-accounts"></i>
                         User Management
                     </a>
                 </li>
-                <!-- Menu Data-->
                 <li id="builder" sec:authorize="hasRole('USER')">
                     <a href="/evaluation/builder">
                         <i class="zmdi zmdi-assignment"></i>
                         Create Evaluation
                     </a>
                 </li>
-                <!-- Menu Data-->
                 <li id="my" sec:authorize="hasRole('USER')">
                     <a href="/evaluation/my">
                         <i class="zmdi zmdi-copy"></i>
                         My Evaluations
                     </a>
                 </li>
-                <!-- Menu Export-->
                 <li class="navigation__sub" id="analysis">
                     <a href="">
                         <i class="zmdi zmdi-spinner"></i>
                         Summarization
                     </a>
-                    <ul>
+                    <!-- <ul>
                         <li id="builder">
                             <a href="/analysis/builder">Query Builder</a>
                         </li>
                         <li id="job">
                             <a href="/analysis/job">Export Jobs</a>
                         </li>
-                        <!-- <li id="export">
-                            <a href="/analysis/export">Export</a>
-                        </li> -->
-                    </ul>
+                    </ul> -->
                 </li>
-                <!-- Menu Export-->
-                <li id="manual">
+                <li id="example-form">
                     <a href="/evaluation/question">
                         <i class="zmdi zmdi-format-clear-all"></i>
-                        Questions
+                        Example Form
                     </a>
                 </li>
             </ul>

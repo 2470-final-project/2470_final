@@ -19,6 +19,16 @@ public class RestfulResponse implements Serializable {
         this.data = data;
     }
 
+    public RestfulResponse(Integer code, Object data) {
+        this.code = code;
+        if (code == 1) {
+            this.msg = "success";
+        } else {
+            this.msg = "failed";
+        }
+        this.data = data;
+    }
+
     /**
      * @return the code
      */

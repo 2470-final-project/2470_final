@@ -12,7 +12,6 @@ $(document).ready(function() {
         maxDate : new Date().fp_incr(120),
         time_24hr : false
     });
-
     $('.flatpickr-input:visible').on('focus', function() {
         $(this).blur()
     })

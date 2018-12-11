@@ -189,5 +189,5 @@ public interface UsersMapper {
             @Result(column = "enabled", property = "enabled", jdbcType = JdbcType.BIT),
             @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
             @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP) })
-    UserVO selectByUsername(String name);
+    List<UserVO> selectByUsername(String name);
 }

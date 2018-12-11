@@ -1,4 +1,4 @@
-var baseUrl = "http://192.168.1.207:8080/evaluation/question-form/"
+var baseUrl = "http://18.234.210.117/evaluation/question-form/"
 
 $(document).ready(function() {
 
@@ -24,7 +24,10 @@ $(document).ready(function() {
         columns : [ {
             data : 'id'
         }, {
-            data : 'courseId'
+            data : null,
+            render : function(data) {
+                return data.subject + ' ' + data.number;
+            }
         }, {
             data : null,
             render : function(data) {
@@ -33,11 +36,12 @@ $(document).ready(function() {
         }, {
             data : null,
             render : function(data) {
-                if (data.duration > 0) {
-                    return data.duration + " Hours";
-                } else {
-                    return "Indefinite";
-                }
+                return data.duration;
+                // if (data.duration > 0) {
+                // return data.duration + " Hours";
+                // } else {
+                // return "Indefinite";
+                // }
             }
         }, {
             data : null,

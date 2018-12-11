@@ -46,26 +46,36 @@
             <!-- PUT THE MAIN CONTENT HERE -->
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Evaluation Form</h4>
-                    <h6 class="card-subtitle">Please answer the quesitons according to the class contents.</h6>
+                    <h4 class="card-title">Example Evaluation Form</h4>
+                    <h6 class="card-subtitle">
+                        <i>
+                            NOTE: This is an example form diplaying all the questions asked in an evaluation.
+                            </br>
+                            The evaluation contains a total of 18 quesitons, as shown below.
+                            </br>
+                            Each user accessing a real form will randomly recieve 6 questions from the pool of the 18 questions.
+                            </br>
+                            Each questions will get similar counts of pulled out to form a evaluation, for an class of more 20 people.
+                        </i>
+                    </h6>
                     <form role="form" id="evaluation-form">
                         <div class="row">
                             <div class="form-group col-sm-12" th:each="question,iter : ${questions}">
                                 <h6 th:text="${iter.index + 1} + '. ' + ${question.question}" class="lead"></h6>
                                 <div class="radio" th:each="option : ${question.options}" th:if="${question.type == 1}">
-                                    <input type="radio" th:name="${question.id}" th:id="${question.id} + option + ${option.optionNumber}">
+                                    <input type="radio" th:name="${question.id}" th:id="${question.id} + option + ${option.optionNumber}" disabled>
                                     <label class="radio__label" th:for="${question.id} + option + ${option.optionNumber}" th:text="${option.option}"></label>
                                 </div>
                                 <div class="checkbox" th:each="option : ${question.options}" th:if="${question.type == 2}">
-                                    <input type="checkbox" th:name="${question.id}" th:id="${question.id} + option + ${option.optionNumber}">
+                                    <input type="checkbox" th:name="${question.id}" th:id="${question.id} + option + ${option.optionNumber}" disabled>
                                     <label class="checkbox__label" th:for="${question.id} + option + ${option.optionNumber}" th:text="${option.option}">Example checkbox</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4 col-md-2">
+                            <div class="col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="button" aria-pressed="false" autocomplete="off" id="filterButton">Submit</button>
+                                    <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="button" aria-pressed="false" autocomplete="off" id="filterButton" disabled>Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -105,12 +115,6 @@
     <script src="/vendors/bower_components/nouislider/distribute/nouislider.min.js"></script>
     <script src="/vendors/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
     <script src="/vendors/bower_components/trumbowyg/dist/trumbowyg.min.js"></script>
-
-    <!-- Vendors: Flot Charts -->
-    <script src="/vendors/bower_components/Flot/jquery.flot.js"></script>
-    <script src="/vendors/bower_components/Flot/jquery.flot.time.js"></script>
-    <script src="/vendors/bower_components/Flot/jquery.flot.selection.js"></script>
-    <script src="/vendors/bower_components/Flot/jquery.flot.resize.js"></script>
 
     <!-- App functions and actions -->
     <script src="/js/navigation.js"></script>
