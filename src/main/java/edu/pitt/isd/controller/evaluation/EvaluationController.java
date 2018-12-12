@@ -33,14 +33,22 @@ public class EvaluationController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails users = (CustomUserDetails) authentication.getPrincipal();
         List<EvaluationVO> list = evaluationService.selectVoByUserId(users.getId());
-        
+
         modelAndView.addObject("evaluations", list);
         modelAndView.addObject("nav", "my");
         modelAndView.addObject("subnav", "");
         modelAndView.setViewName("evaluation/my");
-        
+
         return modelAndView;
 
+    }
+
+    @GetMapping("list")
+    public RestfulResponse userEvaluations() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails users = (CustomUserDetails) authentication.getPrincipal();
+        List<EvaluationVO> list = evaluationService.selectVoByUserId(users.getId());
+        return new RestfulResponse(1, list);
     }
 
     @GetMapping("builder")

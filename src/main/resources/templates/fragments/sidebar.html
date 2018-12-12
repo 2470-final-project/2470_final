@@ -13,7 +13,13 @@
                 <li id="home">
                     <a href="/">
                         <i class="zmdi zmdi-home"></i>
-                        Home
+                        My Dashboard
+                    </a>
+                </li>
+                <li id="overview" sec:authorize="hasRole('ADMIN')">
+                    <a href="/overview">
+                        <i class="zmdi zmdi-spinner"></i>
+                        Overview
                     </a>
                 </li>
                 <li id="user" sec:authorize="hasRole('ADMIN')">
@@ -22,7 +28,7 @@
                         User Management
                     </a>
                 </li>
-                <li id="builder" sec:authorize="hasRole('USER')">
+                <!-- <li id="builder" sec:authorize="hasRole('USER')">
                     <a href="/evaluation/builder">
                         <i class="zmdi zmdi-assignment"></i>
                         Create Evaluation
@@ -33,25 +39,25 @@
                         <i class="zmdi zmdi-copy"></i>
                         My Evaluations
                     </a>
-                </li>
-                <li class="navigation__sub" id="analysis">
+                </li> -->
+                <!-- <li class="navigation__sub" id="analysis">
                     <a href="">
                         <i class="zmdi zmdi-spinner"></i>
                         Summarization
                     </a>
-                    <!-- <ul>
+                    <ul>
                         <li id="builder">
                             <a href="/analysis/builder">Query Builder</a>
                         </li>
                         <li id="job">
                             <a href="/analysis/job">Export Jobs</a>
                         </li>
-                    </ul> -->
-                </li>
+                    </ul>
+                </li> -->
                 <li id="example-form">
                     <a href="/evaluation/question">
                         <i class="zmdi zmdi-format-clear-all"></i>
-                        Example Form
+                        Help
                     </a>
                 </li>
             </ul>

@@ -1,13 +1,24 @@
 var baseUrl = "http://18.234.210.117/evaluation/question-form/"
+var jobs = {
+    "data" : []
+};
 
 $(document).ready(function() {
+    $("#course").select2({
+        width : "100%",
+        dropdownCssClass : "custom-dropdown"
+    });
 
-    var jobs = {
-        "data" : evaluations
-    };
+    $("#duration").select2({
+        width : "100%",
+        dropdownCssClass : "custom-dropdown"
+    });
 
     $.fn.dataTable.moment('M/D, h:mm a');
     var jobTable = $('#job-table').DataTable({
+        ajax : {
+            "url" : "evaluation/list"
+        },
         data : jobs.data,
         columnDefs : [ {
             "targets" : [ 0, 4
@@ -85,4 +96,50 @@ $(document).ready(function() {
         };
         return moment(new Date(date).toLocaleString('en-US', options), "M/D/yyyy h:mm:ss a").format('M/D, h:mm a');
     }
+
+    $start = $("#start");
+    $start.flatpickr({
+        enableTime : true,
+        dateFormat : "D m/j/Y h:i K",
+        minDate : "today",
+        maxDate : new Date().fp_incr(120),
+        time_24hr : false
+    });
+    $('.flatpickr-input:visible').on('focus', function() {
+        $(this).blur()
+    })
+    $('.flatpickr-input:visible').prop('readonly', false)
+
+    var $createEvaluationForm = $('#create-evaluation-form');
+    $createEvaluationForm.on('submit', function(ev) {
+        $('#create-evaluation-button').prop('disabled', true);
+        ev.preventDefault();
+        if ($createEvaluationForm[0].checkValidity()) {
+            var form = {
+                "courseId" : $("#course").val(),
+                "startTime" : new Date($("#start").val()).toISOString(),
+                "duration" : $("#duration").val(),
+            };
+            $.ajax({
+                'url' : "/evaluation/create",
+                'type' : 'put',
+                'data' : JSON.stringify(form),
+                'contentType' : "application/json",
+                'dataType' : 'json',
+                'success' : function(data) {
+                    jobTable.ajax.reload();
+                    $("#create-evaluation-modal").modal('hide');
+                    $('#create-evaluation-button').prop('disabled', false);
+                },
+                'error' : function() {
+                    $('#create-evaluation-button').prop('disabled', false);
+                }
+            });
+        } else {
+            $createEvaluationForm.find(':submit').click();
+            console.log("invalid form");
+            $('#create-evaluation-button').prop('disabled', false);
+        }
+    });
+
 });

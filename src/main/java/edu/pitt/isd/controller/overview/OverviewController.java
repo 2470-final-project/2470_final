@@ -1,4 +1,4 @@
-package edu.pitt.isd.controller.index;
+package edu.pitt.isd.controller.overview;
 
 import java.util.List;
 
@@ -16,7 +16,8 @@ import edu.pitt.isd.service.CourseService;
 import edu.pitt.isd.service.EvaluationService;
 
 @RestController
-public class IndexController {
+@RequestMapping("overview")
+public class OverviewController {
     @Autowired
     EvaluationService evaluationService;
     @Autowired
@@ -31,10 +32,9 @@ public class IndexController {
         List<Course> courses = courseService.selectByUserId(users.getId());
         modelAndView.addObject("courses", courses);
         modelAndView.addObject("evaluations", list);
-        modelAndView.addObject("nav", "home");
+        modelAndView.addObject("nav", "overview");
         modelAndView.addObject("subnav", "");
-        modelAndView.setViewName("index/home");
+        modelAndView.setViewName("index/overview");
         return modelAndView;
     }
-
 }

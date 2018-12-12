@@ -6,19 +6,19 @@ $(document).ready(
 
         function() {
 
-            var a = function() {
-                $("#collapseExample").collapse('toggle');
-            }
+            // var a = function() {
+            // $("#collapseExample").collapse('toggle');
+            // }
 
             var ctx = $("#myChart");
             var myChart = new Chart(ctx, {
                 type : 'line',
                 data : {
-                    labels : [ '10/3', '10/11', '11/5', '11/14', '11/25', '12/1', '12/6'
+                    labels : [ 'Sep', 'Oct', 'Nov', 'Dec'
                     ],
                     datasets : [ {
-                        label : 'My Ratings',
-                        data : [ 3.56, 3.68, 4.01, 3.87, 4.33, 4.10, 4.22
+                        label : 'Ratings by Month',
+                        data : [ 3.56, 3.68, 4.01, 3.92
                         ],
                         backgroundColor : [ 'rgba(50, 199, 135, 0.2)'
                         ],
@@ -30,9 +30,8 @@ $(document).ready(
                     ]
                 },
                 options : {
-                    events : [ "mousemove", "mouseout", "touchstart", "touchmove", "touchend", "click"
+                    events : [ "mousemove", "mouseout", "touchstart", "touchmove", "touchend"
                     ],
-                    onClick : a,
                     scales : {
                         yAxes : [ {
                             ticks : {
@@ -52,8 +51,8 @@ $(document).ready(
                     labels : [ ''
                     ],
                     datasets : [ {
-                        label : 'My Ratings',
-                        data : [ 4.13
+                        label : 'Information Science',
+                        data : [ 3.59
                         ],
                         backgroundColor : [ 'rgba(50, 199, 135, 0.2)'
                         ],
@@ -62,8 +61,8 @@ $(document).ready(
                         borderWidth : 3,
                         fill : false
                     }, {
-                        label : 'Dept. Avg. Ratings',
-                        data : [ 3.68
+                        label : 'Emergency Medicine',
+                        data : [ 3.9
                         ],
                         backgroundColor : [ 'rgba(208, 102, 226, 0.2)'
                         ],
@@ -72,8 +71,8 @@ $(document).ready(
                         borderWidth : 3,
                         fill : false
                     }, {
-                        label : 'Univ. Avg. Ratings',
-                        data : [ 3.72
+                        label : 'Psychology',
+                        data : [ 3.80
                         ],
                         backgroundColor : [ 'rgba(33, 150, 243, 0.2)'
                         ],
